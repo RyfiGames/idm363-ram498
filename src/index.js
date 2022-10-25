@@ -6,46 +6,49 @@ import { Layout, AdminPage, CartPage, ShopPage } from "./components";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import StateContext, { state, StateContextProvider } from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <App />
-            </Layout>
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <Layout>
-              <AdminPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <Layout>
-              <CartPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <Layout>
-              <ShopPage />
-            </Layout>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <StateContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <App />
+              </Layout>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <Layout>
+                <AdminPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Layout>
+                <CartPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <Layout>
+                <ShopPage />
+              </Layout>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </StateContextProvider>
   </React.StrictMode>
 );
 

@@ -2,8 +2,19 @@ import "./App.css";
 import { Header } from "./components";
 import bannerImg from "./homeBanner.jpeg";
 import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
+import { useContext } from "react";
+import StateContext from "./store";
 
 function App() {
+  const state = useContext(StateContext);
+
+  function addToCart() {
+    state.addItem(1);
+    // state.cartItems.push(1);
+    // state.itemCount++;
+  }
+
   return (
     <>
       <div
@@ -27,6 +38,7 @@ function App() {
           {/* <Button variant="primary">Go somewhere</Button> */}
         </Card.Body>
       </Card>
+      <Button onClick={() => addToCart()}>Add to cart</Button>
     </>
   );
 }

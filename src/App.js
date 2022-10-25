@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import { useContext } from "react";
 import StateContext from "./store";
+import { getFeaturedGames } from "./data.service";
 
 function App() {
   const state = useContext(StateContext);
@@ -27,18 +28,18 @@ function App() {
         big chungus
       </div>
       <h1 className="text-center fw-bold">Featured Games</h1>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          {/* <Button variant="primary">Go somewhere</Button> */}
-        </Card.Body>
-      </Card>
-      <Button onClick={() => addToCart()}>Add to cart</Button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {getFeaturedGames().map(({ name, desc, image }) => (
+          <Card style={{ width: "18rem", margin: "5%" }}>
+            <Card.Img variant="top" src={"images/" + image} />
+            <Card.Body>
+              <Card.Title>{name}</Card.Title>
+              <Card.Text>{desc}</Card.Text>
+              <Button onClick={() => addToCart()}>Add to cart</Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </>
   );
 }

@@ -1,24 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
-import logo from "../../logo.webp";
+import { getAllGames } from "../../data.service";
 
 const ShopPage = () => {
-  const items = ["test", "jim", "joe", "squirt"];
-  const domItems = items.map((v) => (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={logo} />
+  const domItems = getAllGames().map(({ name, desc, image }) => (
+    <Card style={{ width: "18rem", margin: "5%" }}>
+      <Card.Img variant="top" src={"images/" + image} />
       <Card.Body>
-        <Card.Title>{v}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>{desc}</Card.Text>
+        <Button>Add to cart</Button>
       </Card.Body>
     </Card>
   ));
-  return <div>{domItems}</div>;
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>{domItems}</div>
+  );
 };
 
 ShopPage.propTypes = {};

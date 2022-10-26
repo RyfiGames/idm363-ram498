@@ -5,24 +5,28 @@
       "id": 0,
       "name": "Oath",
       "desc": "A game about alliance and betrayal",
+      "price": 1000,
       "image": "testimg.webp"
     },
     {
       "id": 1,
       "name": "Dune Imperium",
       "desc": "A game about exploring a dungeon",
+      "price": 1000,
       "image": "testimg.webp"
     },
     {
       "id": 2,
       "name": "Red Rising",
       "desc": "A game about building the best team there ever was",
+      "price": 1099,
       "image": "testimg.webp"
     },
     {
       "id": 3,
       "name": "Doomlings",
       "desc": "just a bunch of little guys",
+      "price": 1000,
       "image": "testimg.webp"
     }
   ]

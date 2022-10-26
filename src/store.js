@@ -2,8 +2,10 @@ import { createContext, useState } from "react";
 
 export const state = {
   cartItems: [],
-  itemCount: 0,
-  addItem: (item) => {},
+  addCartItem: (item) => {},
+  products: [],
+  featuredProducts: [],
+  updateProducts: (prod, featProd) => {},
 };
 
 const StateContext = createContext(state);
@@ -15,9 +17,19 @@ export const StateContextProvider = ({ children }) => {
     setState(newState);
   };
 
+  const updateProducts = (prod, featProd) => {
+    const newState = Object.assign({}, stateH);
+    newState.products = prod;
+    newState.featuredProducts = featProd;
+    setState(newState);
+  };
+
   const initialState = {
     cartItems: [],
-    addItem: addItem,
+    addCartItem: addItem,
+    products: [],
+    featuredProducts: [],
+    updateProducts: updateProducts,
   };
 
   const [stateH, setState] = useState(initialState);

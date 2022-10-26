@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
-import { getAllGames } from "../../data.service";
+import { data } from "../../data.service";
 
 const ShopPage = () => {
-  const domItems = getAllGames().map(({ name, desc, image }) => (
+  const domItems = data.products.map(({ name, desc, image }) => (
     <Card style={{ width: "18rem", margin: "5%" }}>
       <Card.Img variant="top" src={"images/" + image} />
       <Card.Body>

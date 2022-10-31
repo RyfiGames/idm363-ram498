@@ -10,10 +10,19 @@ export const state = {
   updateProducts: (prod, featProd) => {},
 };
 
+let localState = {
+  cartItems: [],
+  addCartItem: (item) => {},
+  products: [],
+  featuredProducts: [],
+  updateProducts: (prod, featProd) => {},
+};
+
 const StateContext = createContext(state);
 
 export const StateContextProvider = ({ children }) => {
   useEffect(() => {
+    localState = initialState;
     const q = query(collection(db, "allgames"));
 
     onSnapshot(q, (snapshot) => {
@@ -32,19 +41,14 @@ export const StateContextProvider = ({ children }) => {
   }, []);
 
   const addItem = (item) => {
-    const newState = { ...state };
-    console.log(newState.products.length);
-    // newState.cartItems = [...newState.cartItems, item];
-    // setState(newState);
+    localState.cartItems.push(item);
+    setState({ ...localState });
   };
 
   const updateProducts = (prod, featProd) => {
-    const newState = { ...state };
-    newState.products = prod;
-    newState.featuredProducts = featProd;
-    console.log(newState.products.length);
-    setState(newState);
-    console.log(state.products.length);
+    localState.products = prod;
+    localState.featuredProducts = featProd;
+    setState({ ...localState });
   };
 
   const initialState = {

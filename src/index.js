@@ -7,13 +7,11 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import StateContext, { state, StateContextProvider } from "./store";
-import DataService from "./data.service";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <>
-      <DataService />
       <StateContextProvider>
         <BrowserRouter>
           <Routes>

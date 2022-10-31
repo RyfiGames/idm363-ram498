@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "./firestore";
 
 export const state = {
   cartItems: [],
@@ -11,17 +13,38 @@ export const state = {
 const StateContext = createContext(state);
 
 export const StateContextProvider = ({ children }) => {
+  useEffect(() => {
+    const q = query(collection(db, "allgames"));
+
+    onSnapshot(q, (snapshot) => {
+      let prodArray = [];
+      let featuredIds = [];
+      snapshot.forEach((doc) => {
+        if (doc.id === "featured") {
+          featuredIds = doc.data().featuredProducts;
+          return;
+        }
+        prodArray.push({ id: doc.id, ...doc.data() });
+      });
+      let featProd = prodArray.filter((prod) => featuredIds.includes(prod.id));
+      updateProducts(prodArray, featProd);
+    });
+  }, []);
+
   const addItem = (item) => {
-    const newState = Object.assign({}, stateH);
-    newState.cartItems.push(item);
-    setState(newState);
+    const newState = { ...state };
+    console.log(newState.products.length);
+    // newState.cartItems = [...newState.cartItems, item];
+    // setState(newState);
   };
 
   const updateProducts = (prod, featProd) => {
-    const newState = Object.assign({}, stateH);
+    const newState = { ...state };
     newState.products = prod;
     newState.featuredProducts = featProd;
+    console.log(newState.products.length);
     setState(newState);
+    console.log(state.products.length);
   };
 
   const initialState = {

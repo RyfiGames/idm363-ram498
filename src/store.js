@@ -62,7 +62,7 @@ export const StateContextProvider = ({ children }) => {
     delete changedProduct.id;
     setDoc(doc(db, "allgames", product.id), changedProduct)
       .then(() => {
-        getRemoteData();
+        // getRemoteData();
       })
       .catch((reason) => console.log("error! " + reason));
   };

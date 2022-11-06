@@ -3,15 +3,10 @@ import { Button } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import StateContext from "../../store";
 
-let localGameData;
 const AdminGameCard = ({ gameData }) => {
   const state = useContext(StateContext);
   const [gameInfo, setGameInfo] = useState({ ...gameData });
-
-  useEffect(() => {
-    localGameData = { ...gameData };
-    setGameInfo(localGameData);
-  }, []);
+  let localGameData = gameInfo;
 
   function save() {
     state.sendChanges(localGameData);

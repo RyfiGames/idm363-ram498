@@ -20,6 +20,8 @@ const ShopPage = () => {
       <div
         style={{
           display: "flex",
+          flexWrap: "wrap",
+          rowGap: "2rem",
           justifyContent: "center",
           alignItems: "flex-start",
           minHeight: "76vh",

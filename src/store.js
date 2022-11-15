@@ -5,6 +5,7 @@ import { db } from "./firestore";
 export const state = {
   cartItems: [],
   addCartItem: (item) => {},
+  removeCartItem: (item) => {},
   products: [],
   featuredProducts: [],
   updateProducts: (prod, featProd) => {},
@@ -14,6 +15,7 @@ export const state = {
 let localState = {
   cartItems: [],
   addCartItem: (item) => {},
+  removeCartItem: (item) => {},
   products: [],
   featuredProducts: [],
   updateProducts: (prod, featProd) => {},
@@ -51,6 +53,11 @@ export const StateContextProvider = ({ children }) => {
     setState({ ...localState });
   };
 
+  const removeItem = (item) => {
+    const i = localState.cartItems.indexOf(item);
+    localState.cartItems.splice(i, 1);
+  };
+
   const updateProducts = (prod, featProd) => {
     localState.products = prod;
     localState.featuredProducts = featProd;
@@ -70,6 +77,7 @@ export const StateContextProvider = ({ children }) => {
   const initialState = {
     cartItems: [],
     addCartItem: addItem,
+    removeCartItem: (item) => {},
     products: [],
     featuredProducts: [],
     updateProducts: updateProducts,

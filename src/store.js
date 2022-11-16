@@ -56,6 +56,7 @@ export const StateContextProvider = ({ children }) => {
   const removeItem = (item) => {
     const i = localState.cartItems.indexOf(item);
     localState.cartItems.splice(i, 1);
+    setState({ ...localState });
   };
 
   const updateProducts = (prod, featProd) => {
@@ -77,7 +78,7 @@ export const StateContextProvider = ({ children }) => {
   const initialState = {
     cartItems: [],
     addCartItem: addItem,
-    removeCartItem: (item) => {},
+    removeCartItem: removeItem,
     products: [],
     featuredProducts: [],
     updateProducts: updateProducts,

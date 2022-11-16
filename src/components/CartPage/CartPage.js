@@ -21,8 +21,8 @@ const CartPage = () => {
     );
 
     setCartDom(
-      gameDatas.map((gameData) => (
-        <ListGroupItem>
+      gameDatas.map((gameData, index) => (
+        <ListGroupItem key={"cart item " + index}>
           <Container>
             <Row>
               <Col sm={4}>
@@ -36,7 +36,9 @@ const CartPage = () => {
                 <p>{formatMoney(gameData.price)}</p>
               </Col>
               <Col sm={1}>
-                <Button>X</Button>
+                <Button onClick={() => state.removeCartItem(gameData.id)}>
+                  X
+                </Button>
               </Col>
             </Row>
           </Container>
@@ -44,13 +46,21 @@ const CartPage = () => {
       ))
     );
 
+    if (gameDatas.length === 0) {
+      setCartDom(
+        <ListGroupItem key="no cart">
+          You have no items in your cart.
+        </ListGroupItem>
+      );
+    }
+
     setSubtotal(
       gameDatas.reduce(
         (running, game) => Number(running) + Number(game.price),
         0
       )
     );
-  }, [state.cartItems]);
+  }, [state]);
 
   const clickCheckout = () => {
     alert("Congrats! Your bank account has been drained!");
@@ -88,9 +98,13 @@ const CartPage = () => {
                 </strong>
               </ListGroupItem>
             </ListGroup>
-            <Button className="mt-2 w-100" onClick={clickCheckout}>
-              <h3>Checkout</h3>
-            </Button>
+            {state.cartItems.length > 0 ? (
+              <Button className="mt-2 w-100" onClick={clickCheckout}>
+                <h3>Checkout</h3>
+              </Button>
+            ) : (
+              <></>
+            )}
           </Col>
           <Col sm={1}></Col>
         </Row>

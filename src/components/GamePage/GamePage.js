@@ -1,14 +1,27 @@
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import StateContext from "../../store";
-import { LinkContainer } from "react-router-bootstrap";
+import { useParams } from "react-router";
 
-const GameCard = ({ gameData }) => {
+const GamePage = () => {
   const state = useContext(StateContext);
+  const { id } = useParams();
+  const [gameData, setGameData] = useState(null);
+
+  useEffect(() => {
+    setGameData(state.products.find((prod) => prod.id === id));
+  }, [state]);
 
   function addToCart() {
     state.addCartItem(gameData.id);
+  }
+
+  if (!gameData && state.products.length > 0) {
+    return "Game not found!";
+  }
+  if (!gameData && state.products.length == 0) {
+    return "Loading...";
   }
 
   return (
@@ -18,15 +31,10 @@ const GameCard = ({ gameData }) => {
         <Card.Title>{gameData.name}</Card.Title>
         <Card.Text>{gameData.desc}</Card.Text>
         <Card.Text>${gameData.price / 100}</Card.Text>
-        <div className="d-flex justify-content-between">
-          <LinkContainer to={`/game/${gameData.id}`}>
-            <Button>More Info</Button>
-          </LinkContainer>
-          <Button onClick={() => addToCart()}>Add to cart</Button>
-        </div>
+        <Button onClick={() => addToCart()}>Add to cart</Button>
       </Card.Body>
     </Card>
   );
 };
 
-export default GameCard;
+export default GamePage;

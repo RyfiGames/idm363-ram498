@@ -13,7 +13,14 @@ const GameCard = ({ gameData }) => {
 
   return (
     <Card style={{ width: "18rem", margin: "0% 5%" }}>
-      <Card.Img variant="top" src={"images/" + gameData.image} />
+      <Card.Img
+        variant="top"
+        src={
+          gameData.image.startsWith("http")
+            ? gameData.image
+            : "images/" + gameData.image
+        }
+      />
       <Card.Body>
         <Card.Title>{gameData.name}</Card.Title>
         <Card.Text>{gameData.desc}</Card.Text>

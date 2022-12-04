@@ -10,6 +10,7 @@ export const state = {
   featuredProducts: [],
   updateProducts: (prod, featProd) => {},
   sendChanges: (product) => {},
+  emptyCart: () => {},
 };
 
 let localState = {
@@ -20,6 +21,7 @@ let localState = {
   featuredProducts: [],
   updateProducts: (prod, featProd) => {},
   sendChanges: (product) => {},
+  emptyCart: () => {},
 };
 
 const StateContext = createContext(state);
@@ -59,6 +61,11 @@ export const StateContextProvider = ({ children }) => {
     setState({ ...localState });
   };
 
+  const emptyCart = () => {
+    localState.cartItems = [];
+    setState({ ...localState });
+  };
+
   const updateProducts = (prod, featProd) => {
     localState.products = prod;
     localState.featuredProducts = featProd;
@@ -83,6 +90,7 @@ export const StateContextProvider = ({ children }) => {
     featuredProducts: [],
     updateProducts: updateProducts,
     sendChanges: sendChanges,
+    emptyCart: emptyCart,
   };
 
   const [stateH, setState] = useState(initialState);

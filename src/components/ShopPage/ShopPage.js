@@ -21,11 +21,12 @@ const ShopPage = () => {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          rowGap: "2rem",
+          rowGap: "1rem",
           justifyContent: "center",
           alignItems: "flex-start",
           minHeight: "76vh",
         }}
+        className="mb-3"
       >
         {domItems}
       </div>

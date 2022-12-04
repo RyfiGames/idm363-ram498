@@ -27,7 +27,11 @@ const CartPage = () => {
             <Row>
               <Col sm={4}>
                 <img
-                  src={"images/" + gameData.image}
+                  src={
+                    gameData.image.startsWith("http")
+                      ? gameData.image
+                      : "images/" + gameData.image
+                  }
                   style={{ width: "8rem" }}
                 />
               </Col>
@@ -63,7 +67,8 @@ const CartPage = () => {
   }, [state]);
 
   const clickCheckout = () => {
-    alert("Congrats! Your bank account has been drained!");
+    alert("Congrats! You have checked out!");
+    state.emptyCart();
   };
 
   function formatMoney(value) {
@@ -73,13 +78,12 @@ const CartPage = () => {
   return (
     <>
       <h1 className="text-center fw-bold mt-3 mb-5">Your Cart</h1>
-      <Container>
+      <Container className="mb-3">
         <Row style={{ minHeight: "76vh" }}>
-          <Col sm={1}></Col>
-          <Col sm={7}>
+          <Col sm={8}>
             <ListGroup>{cartDom}</ListGroup>
           </Col>
-          <Col sm={3}>
+          <Col sm={4}>
             <ListGroup>
               <ListGroupItem className="d-flex justify-content-between">
                 <span>Subtotal:</span>
@@ -106,7 +110,6 @@ const CartPage = () => {
               <></>
             )}
           </Col>
-          <Col sm={1}></Col>
         </Row>
       </Container>
     </>

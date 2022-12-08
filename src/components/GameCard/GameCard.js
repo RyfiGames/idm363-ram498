@@ -31,13 +31,23 @@ const GameCard = ({ gameData }) => {
       <Card.Body>
         <Card.Title>{gameData.name}</Card.Title>
         <Card.Text>{gameData.desc}</Card.Text>
-        <Card.Text>${gameData.price / 100}</Card.Text>
-        <div className="d-flex justify-content-between">
-          <LinkContainer to={`/game/${gameData.id}`}>
-            <Button>More Info</Button>
-          </LinkContainer>
-          <Button onClick={() => addToCart()}>{addText}</Button>
-        </div>
+        <Card.Text>
+          <strong>${gameData.price / 100}</strong>
+        </Card.Text>
+        <div style={{ height: "28px" }}></div>
+        <Button
+          variant="secondary"
+          style={{ position: "absolute", bottom: "16px" }}
+          onClick={() => addToCart()}
+        >
+          {addText}
+        </Button>
+        <LinkContainer
+          to={`/game/${gameData.id}`}
+          style={{ position: "absolute", bottom: "16px", right: "16px" }}
+        >
+          <Button variant="secondary">More Info</Button>
+        </LinkContainer>
       </Card.Body>
     </Card>
   );

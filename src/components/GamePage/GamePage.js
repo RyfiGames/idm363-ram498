@@ -10,6 +10,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import StateContext from "../../store";
 import { useParams } from "react-router";
+import { LinkContainer } from "react-router-bootstrap";
 
 const GamePage = () => {
   const state = useContext(StateContext);
@@ -30,7 +31,41 @@ const GamePage = () => {
   }, [state]);
 
   if (!gameData && state.products.length > 0) {
-    return "Game not found!";
+    return (
+      <>
+        <h1 className="text-center fw-bold mt-3 mb-5">Game not found!</h1>
+        <h3 className="text-center fw-bold mt-3 mb-5">
+          We're not sure what you were looking for...
+        </h3>
+        <div
+          className="m-4"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}
+        >
+          <LinkContainer
+            to="/shop"
+            style={{ width: "25rem", fontSize: "30px" }}
+          >
+            <Button variant="secondary">
+              Back to Shop{" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                className="bi bi-arrow-right"
+                viewBox="0 0 16 16"
+              >
+                <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+              </svg>
+            </Button>
+          </LinkContainer>
+        </div>
+      </>
+    );
   }
   if (!gameData && state.products.length == 0) {
     return "Loading...";

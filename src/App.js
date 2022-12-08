@@ -37,17 +37,27 @@ function App() {
         </h1>
       </div>
       <h1 className="text-center fw-bold mt-3 mb-5">Featured Games</h1>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "stretch",
+        }}
+      >
         {state.featuredProducts.map((game) => (
           <GameCard gameData={game} key={game.id} />
         ))}
       </div>
       <div
         className="m-4"
-        style={{ display: "flex", justifyContent: "center" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+        }}
       >
         <LinkContainer to="/shop" style={{ width: "25rem", fontSize: "30px" }}>
-          <Button>
+          <Button variant="secondary">
             Shop All Games{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -20,7 +20,7 @@ const AdminGameCard = ({ gameData, isNew }) => {
     } else {
       return (
         <LinkContainer to={`/game/${gameData.id}`}>
-          <Button>Game Page</Button>
+          <Button variant="secondary">Game Page</Button>
         </LinkContainer>
       );
     }
@@ -42,6 +42,7 @@ const AdminGameCard = ({ gameData, isNew }) => {
           <Card.Title>{gameData.name}</Card.Title>
           <div className="d-flex justify-content-between">
             <Button
+              variant="secondary"
               onClick={() => {
                 setGameInfo({ ...gameData });
                 setShowModal(true);
@@ -197,11 +198,11 @@ const AdminGameCard = ({ gameData, isNew }) => {
           <br />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button variant="dark" onClick={() => setShowModal(false)}>
             Cancel
           </Button>
           <Button
-            variant="primary"
+            variant="secondary"
             onClick={() => {
               save();
               setShowModal(false);

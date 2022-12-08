@@ -23,7 +23,7 @@ const ShopPage = () => {
           flexWrap: "wrap",
           rowGap: "1rem",
           justifyContent: "center",
-          alignItems: "flex-start",
+          alignItems: "stretch",
           minHeight: "76vh",
         }}
         className="mb-3"

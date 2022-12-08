@@ -62,7 +62,7 @@ const GamePage = () => {
                 lineHeight: "30px",
               }}
             >
-              {gameData.desc}
+              {gameData.longDesc}
             </p>
             <div className="mt-5 mb-5"></div>
           </Col>
@@ -74,27 +74,29 @@ const GamePage = () => {
                 </h1>
               </ListGroupItem>
               <ListGroupItem>
-                <h3>{gameData.desc}</h3>
+                <h5>{gameData.desc}</h5>
               </ListGroupItem>
               <ListGroupItem className="d-flex justify-content-between">
                 <h5>Year Published</h5>
-                <h5>{gameData.desc}</h5>
+                <h5>{gameData.year}</h5>
               </ListGroupItem>
               <ListGroupItem className="d-flex justify-content-between">
                 <h5>Players</h5>
-                <h5>{gameData.desc}</h5>
+                <h5>
+                  {gameData.minPlayers} - {gameData.maxPlayers}
+                </h5>
               </ListGroupItem>
               <ListGroupItem className="d-flex justify-content-between">
                 <h5>BGG Rank</h5>
-                <h5>{gameData.desc}</h5>
+                <h5>{gameData.rank}</h5>
               </ListGroupItem>
               <ListGroupItem className="d-flex justify-content-between">
                 <h5>Rating</h5>
-                <h5>{gameData.desc}</h5>
+                <h5>{gameData.rating}</h5>
               </ListGroupItem>
               <ListGroupItem className="d-flex justify-content-between">
                 <h5>Complexity Rating</h5>
-                <h5>{gameData.desc}</h5>
+                <h5>{gameData.complexity}</h5>
               </ListGroupItem>
               <ListGroupItem className="d-flex justify-content-between">
                 <h3>
@@ -107,19 +109,6 @@ const GamePage = () => {
         </Row>
       </Container>
     </>
-    // <Card style={{ width: "18rem", margin: "0% 5%" }}>
-    //   <Card.Img variant="top" src={
-    //       gameData.image.startsWith("http")
-    //         ? gameData.image
-    //         : "images/" + gameData.image
-    //     } />
-    //   <Card.Body>
-    //     <Card.Title>{gameData.name}</Card.Title>
-    //     <Card.Text>{gameData.desc}</Card.Text>
-    //     <Card.Text>${gameData.price / 100}</Card.Text>
-    //     <Button onClick={() => addToCart()}>Add to cart</Button>
-    //   </Card.Body>
-    // </Card>
   );
 };
 

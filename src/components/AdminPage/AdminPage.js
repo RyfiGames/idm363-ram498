@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Header from "../Header/Header";
 import AdminGameCard from "../AdminGameCard/AdminGameCard";
@@ -10,7 +10,7 @@ const AdminPage = () => {
   const state = useContext(StateContext);
 
   const domItems = state.products.map((game) => (
-    <AdminGameCard gameData={game} key={game.id} />
+    <AdminGameCard gameData={game} key={game.id} isNew="false" />
   ));
 
   domItems.push(
@@ -23,6 +23,7 @@ const AdminPage = () => {
         image: "newicon.png",
       }}
       key={"new"}
+      isNew="true"
     />
   );
 

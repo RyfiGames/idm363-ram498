@@ -2,8 +2,9 @@ import Card from "react-bootstrap/Card";
 import { Button, Modal } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import StateContext from "../../store";
+import { LinkContainer } from "react-router-bootstrap";
 
-const AdminGameCard = ({ gameData }) => {
+const AdminGameCard = ({ gameData, isNew }) => {
   const state = useContext(StateContext);
   const [gameInfo, setGameInfo] = useState({ ...gameData });
   const [showModal, setShowModal] = useState(false);
@@ -11,6 +12,18 @@ const AdminGameCard = ({ gameData }) => {
 
   function save() {
     state.sendChanges(localGameData);
+  }
+
+  function gamePageButton() {
+    if (isNew === "true") {
+      return <></>;
+    } else {
+      return (
+        <LinkContainer to={`/game/${gameData.id}`}>
+          <Button>Game Page</Button>
+        </LinkContainer>
+      );
+    }
   }
 
   return (
@@ -27,14 +40,17 @@ const AdminGameCard = ({ gameData }) => {
         />
         <Card.Body>
           <Card.Title>{gameData.name}</Card.Title>
-          <Button
-            onClick={() => {
-              setGameInfo({ ...gameData });
-              setShowModal(true);
-            }}
-          >
-            Edit
-          </Button>
+          <div className="d-flex justify-content-between">
+            <Button
+              onClick={() => {
+                setGameInfo({ ...gameData });
+                setShowModal(true);
+              }}
+            >
+              Edit
+            </Button>
+            {gamePageButton()}
+          </div>
         </Card.Body>
       </Card>
       <Modal show={showModal}>
@@ -90,6 +106,94 @@ const AdminGameCard = ({ gameData }) => {
             }}
           ></input>
           <br />
+          <br />
+          <details>
+            <summary>Edit More Details</summary>
+            <label htmlFor="longDescInput">Long Description:</label>
+            <br />
+            <textarea
+              id="longDescInput"
+              className="w-100"
+              value={gameInfo.longDesc}
+              onChange={(event) => {
+                localGameData.longDesc = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></textarea>
+            <br />
+            <label htmlFor="yearInput">Year Published:</label>
+            <br />
+            <input
+              id="yearInput"
+              className="w-100"
+              value={gameInfo.year}
+              onChange={(event) => {
+                localGameData.year = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></input>
+            <br />
+            <label htmlFor="minPlayersInput">Min Players:</label>
+            <br />
+            <input
+              id="minPlayersInput"
+              className="w-100"
+              value={gameInfo.minPlayers}
+              onChange={(event) => {
+                localGameData.minPlayers = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></input>
+            <br />
+            <label htmlFor="maxPlayersInput">Max Players:</label>
+            <br />
+            <input
+              id="maxPlayersInput"
+              className="w-100"
+              value={gameInfo.maxPlayers}
+              onChange={(event) => {
+                localGameData.maxPlayers = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></input>
+            <br />
+            <label htmlFor="rankInput">BGG Rank:</label>
+            <br />
+            <input
+              id="rankInput"
+              className="w-100"
+              value={gameInfo.rank}
+              onChange={(event) => {
+                localGameData.rank = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></input>
+            <br />
+            <label htmlFor="ratingInput">Rating:</label>
+            <br />
+            <input
+              id="ratingInput"
+              className="w-100"
+              value={gameInfo.rating}
+              onChange={(event) => {
+                localGameData.rating = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></input>
+            <br />
+            <label htmlFor="complexityInput">Complexity Rating:</label>
+            <br />
+            <input
+              id="complexityInput"
+              className="w-100"
+              value={gameInfo.complexity}
+              onChange={(event) => {
+                localGameData.complexity = event.target.value;
+                setGameInfo({ ...localGameData });
+              }}
+            ></input>
+            <br />
+          </details>
           <br />
         </Modal.Body>
         <Modal.Footer>

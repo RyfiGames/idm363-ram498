@@ -54,7 +54,7 @@ const AdminGameCard = ({ gameData }) => {
             }}
           ></input>
           <br />
-          <label htmlFor="descInput">Description:</label>
+          <label htmlFor="descInput">Short Description:</label>
           <br />
           <input
             id="descInput"

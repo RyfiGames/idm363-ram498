@@ -46,14 +46,17 @@ const GamePage = () => {
       <Container>
         <Row style={{ minHeight: "76vh" }}>
           <Col sm={8}>
-            <img
-              src={
-                gameData.image.startsWith("http")
-                  ? gameData.image
-                  : "../images/" + gameData.image
-              }
-              className="w-100 rounded-5"
-            />
+            <div className="d-flex justify-content-center">
+              <img
+                src={
+                  gameData.image.startsWith("http")
+                    ? gameData.image
+                    : "../images/" + gameData.image
+                }
+                className="rounded-5"
+                style={{ width: "75%" }}
+              />
+            </div>
             <p
               className="mt-4"
               style={{
@@ -102,7 +105,9 @@ const GamePage = () => {
                 <h3>
                   <strong>{formatMoney(gameData.price)}</strong>
                 </h3>
-                <Button onClick={() => addToCart()}>{addText}</Button>
+                <Button variant="secondary" onClick={() => addToCart()}>
+                  {addText}
+                </Button>
               </ListGroupItem>
             </ListGroup>
           </Col>
